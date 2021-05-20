@@ -1,11 +1,18 @@
 package com.microservices.microservices.controller;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.Link;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,8 +37,15 @@ public class UserServiceController {
 	}
 
 	@GetMapping("/users/{userId}")
-	public User findOne(@PathVariable Integer userId) {
-		return userService.findOne(userId);
+	public CollectionModel<User> findOne(@PathVariable Integer userId) {
+		 
+		
+		Link link = linkTo(methodOn(UserServiceController.class)
+			      .fetchAllUsers()).withSelfRel();
+		User user = userService.findOne(userId);
+			    CollectionModel<User> result = CollectionModel.of(  Stream.of(user).collect(Collectors.toList()), link);
+		
+		return result;
 	}
 
 	@PostMapping("/users/saveUser")
