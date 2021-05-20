@@ -16,21 +16,16 @@ public class MicroservicesExampleApplication {
 		SpringApplication.run(MicroservicesExampleApplication.class, args);
 	}
 	
-	@Bean
-	public LocaleResolver localResolver()
-	{
-		SessionLocaleResolver slr = new SessionLocaleResolver();
-		slr.setDefaultLocale(Locale.US);
-		return slr;
-	}
-	
-	@Bean
-	public ResourceBundleMessageSource bundleMessageSource()
-	{
-		ResourceBundleMessageSource src = new ResourceBundleMessageSource();
-		src.setBasename("messages");
-		return src;
-		
-	}
+	/*
+	 * @Bean public LocaleResolver localResolver() { SessionLocaleResolver slr = new
+	 * SessionLocaleResolver(); slr.setDefaultLocale(Locale.US); return slr; }
+	 */
+	/*
+	 * @Bean public ResourceBundleMessageSource bundleMessageSource() {
+	 * ResourceBundleMessageSource src = new ResourceBundleMessageSource();
+	 * src.setBasename("messages"); return src;
+	 * 
+	 * }
+	 */
 
 }
