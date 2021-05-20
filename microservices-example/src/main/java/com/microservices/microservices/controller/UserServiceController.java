@@ -25,6 +25,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.microservices.microservices.bean.User;
 import com.microservices.microservices.services.UserServices;
 
+import io.swagger.annotations.ApiResponse;
+
 @RestController
 public class UserServiceController {
 
@@ -37,6 +39,7 @@ public class UserServiceController {
 	}
 
 	@GetMapping("/users/{userId}")
+	@ApiResponse(message = "It will fetch the specific user details.", code = 0)
 	public CollectionModel<User> findOne(@PathVariable Integer userId) {
 		 
 		

@@ -7,14 +7,20 @@ import javax.validation.constraints.Size;
 
 import org.springframework.hateoas.RepresentationModel;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(description = "All details about the user.")
 public class User extends RepresentationModel<User> {
 
 	private Integer id;
 
 	@Size(min = 2,message = "Name must have 2 characters.")
+	@ApiModelProperty(notes = "Name should have 2 characters atleast.")
 	private String name;
 
 	@Past
+	@ApiModelProperty(notes = "DOB should ot be future dates.")
 	private Date dob;
 
 	public Integer getId() {
